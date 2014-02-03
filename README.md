@@ -1,4 +1,4 @@
-grunt-titaniumifier
+grunt-titaniumifier [![Build Status](https://travis-ci.org/smclab/grunt-titaniumifier.png)](https://travis-ci.org/smclab/grunt-titaniumifier)
 ===================
 
 Get a Titanium CommonJS Module out of your Node.js package using Grunt!

@@ -1,0 +1,41 @@
+{
+  "name": "grunt-titaniumifier",
+  "version": "0.1.0",
+  "description": "Get a Titanium CommonJS Module out of your Node.js package using Grunt!",
+  "author": {
+    "name": "Pier Paolo Ramon",
+    "email": "pierpaolo.ramon@smc.it",
+    "url": "https://github.com/yuchi"
+  },
+  "license": "LGPL2.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smclab/grunt-titaniumifier.git"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "browserify",
+    "grunt",
+    "mobile",
+    "titanium",
+    "titaniumifier"
+  ],
+  "dependencies": {
+    "titaniumifier": "~0.2.2"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.2"
+  }
+}

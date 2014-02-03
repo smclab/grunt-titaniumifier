@@ -1,5 +1,7 @@
 'use strict';
 
+var path = require('path');
+
 module.exports = function(grunt) {
 
   grunt.initConfig({
@@ -17,7 +19,8 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      "test": [ './test/build' ]
+      "test": [ './test/build' ],
+      "app": [ './test/fake-app/build', './test/fake-app/modules' ]
     },
 
     titaniumifier: {
@@ -33,6 +36,24 @@ module.exports = function(grunt) {
           bare: true
         }
       }
+    },
+
+    unzip: {
+      "module": {
+        src: 'test/build/fake-module-commonjs-1.2.3.zip',
+        dest: 'test/fake-app'
+      }
+    },
+
+    titanium: {
+      "ios": {
+        options: {
+          command: 'build',
+          logLevel: 'trace',
+          projectDir: './test/fake-app',
+          platform: 'ios'
+        }
+      }
     }
 
   });
@@ -41,13 +62,17 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-titanium');
+  grunt.loadNpmTasks('grunt-zip');
 
-  grunt.registerTask('mkdir:test', function () {
+  grunt.registerTask('mkdir:build', function () {
     grunt.file.mkdir('./test/build');
   });
 
-  grunt.registerTask('test', [ 'clean:test', 'mkdir:test', 'titaniumifier' ]);
+  grunt.registerTask('test:build', [ 'clean:test', 'mkdir:build', 'titaniumifier' ]);
 
-  grunt.registerTask('default', [ 'jshint', 'test' ]);
+  grunt.registerTask('test:app', [ 'clean:app', 'test:build', 'unzip:module', 'titanium:ios' ]);
+
+  grunt.registerTask('default', [ 'jshint', 'test:build' ]);
 
 };

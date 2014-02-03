@@ -19,7 +19,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test:build"
   },
   "keywords": [
     "browserify",

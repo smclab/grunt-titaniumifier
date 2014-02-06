@@ -53,6 +53,15 @@ module.exports = function(grunt) {
           projectDir: './test/fake-app',
           platform: 'ios'
         }
+      },
+      "droid": {
+        options: {
+          command: 'build',
+          logLevel: 'trace',
+          projectDir: './test/fake-app',
+          platform: 'android',
+          deviceId: grunt.option('device-id')
+        }
       }
     }
 
@@ -71,7 +80,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test:build', [ 'clean:test', 'mkdir:build', 'titaniumifier' ]);
 
-  grunt.registerTask('test:app', [ 'clean:app', 'test:build', 'unzip:module', 'titanium:ios' ]);
+  grunt.registerTask('setup:app', [ 'clean:app', 'test:build', 'unzip:module' ]);
+
+  grunt.registerTask('test:ios', [ 'setup:app', 'titanium:ios' ]);
+  grunt.registerTask('test:droid', [ 'setup:app', 'titanium:droid' ]);
 
   grunt.registerTask('default', [ 'jshint', 'test:build' ]);
 

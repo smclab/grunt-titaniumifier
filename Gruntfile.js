@@ -35,12 +35,21 @@ module.exports = function(grunt) {
         options: {
           bare: true
         }
+      },
+      "renamed": {
+        files: { './test/build': 'test/fake-module' },
+        options: {
+          as: "renamed-module"
+        }
       }
     },
 
     unzip: {
       "module": {
-        src: 'test/build/fake-module-commonjs-1.2.3.zip',
+        src: [
+          'test/build/fake-module-commonjs-1.2.3.zip',
+          'test/build/renamed-module-commonjs-1.2.3.zip'
+        ],
         dest: 'test/fake-app'
       }
     },

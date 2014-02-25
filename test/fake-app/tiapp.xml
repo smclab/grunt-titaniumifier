@@ -49,6 +49,7 @@
     </mobileweb>
     <modules>
         <module platform="commonjs" version="1.2.3">fake-module</module>
+        <module platform="commonjs" version="1.2.3">renamed-module</module>
     </modules>
     <deployment-targets>
         <target device="android">true</target>

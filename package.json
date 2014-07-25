@@ -1,6 +1,6 @@
 {
   "name": "grunt-titaniumifier",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Get a Titanium CommonJS Module out of your Node.js package using Grunt!",
   "author": {
     "name": "Pier Paolo Ramon",
@@ -29,7 +29,7 @@
     "titaniumifier"
   ],
   "dependencies": {
-    "titaniumifier": "~0.2.8"
+    "titaniumifier": "~0.2.9"
   },
   "devDependencies": {
     "grunt-contrib-clean": "~0.5.0",

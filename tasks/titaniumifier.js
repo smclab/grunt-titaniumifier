@@ -1,5 +1,6 @@
 'use strict';
 
+var chalk = require('chalk');
 var path = require('path');
 var titaniumifier = require('titaniumifier');
 
@@ -58,6 +59,7 @@ module.exports = function(grunt) {
       return zip.writeModule(dest);
     })
     .done(function () {
+      grunt.log.ok("Module zip written in " + chalk.cyan(dest));
       done();
     }, function (err) {
       grunt.fail.fatal(err);

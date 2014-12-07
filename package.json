@@ -30,6 +30,7 @@
   ],
   "dependencies": {
     "titaniumifier": "~0.2.9"
+    "chalk": "^0.5.1",
   },
   "devDependencies": {
     "grunt": "~0.4.5",

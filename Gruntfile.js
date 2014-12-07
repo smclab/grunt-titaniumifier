@@ -64,19 +64,18 @@ module.exports = function(grunt) {
     },
 
     titanium: {
+      options: {
+        command: 'build',
+        logLevel: (grunt.option('log-level') || 'info'),
+        projectDir: './test/fake-app',
+      },
       "ios": {
         options: {
-          command: 'build',
-          logLevel: 'trace',
-          projectDir: './test/fake-app',
           platform: 'ios'
         }
       },
       "droid": {
         options: {
-          command: 'build',
-          logLevel: 'trace',
-          projectDir: './test/fake-app',
           platform: 'android',
           deviceId: grunt.option('device-id')
         }

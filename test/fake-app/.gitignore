@@ -1,6 +1,8 @@
 modules
 build
 build.log
+Resources/should.js
+Resources/ti-mocha.js
 tmp
 ._*
 .DS_Store

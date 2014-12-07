@@ -1,6 +1,10 @@
 {
   "name": "fake-module",
   "guid": "b91da39e-e3e3-f75a-ff4a-cc2d29b31bff",
+  "titaniumManifest": {
+    "name": "A Fake Module",
+    "moduleid": "renamed-module"
+  },
   "private": true,
   "version": "1.2.3",
   "description": "Hallo",

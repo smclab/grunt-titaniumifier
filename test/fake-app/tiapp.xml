@@ -48,7 +48,6 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
-        <module platform="commonjs" version="1.2.3">fake-module</module>
         <module platform="commonjs" version="1.2.3">renamed-module</module>
     </modules>
     <deployment-targets>
@@ -59,5 +58,5 @@
         <target device="mobileweb">false</target>
         <target device="tizen">false</target>
     </deployment-targets>
-    <sdk-version>3.2.0.GA</sdk-version>
+    <sdk-version>3.4.1.GA</sdk-version>
 </ti:app>

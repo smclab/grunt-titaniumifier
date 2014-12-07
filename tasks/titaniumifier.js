@@ -13,7 +13,6 @@ module.exports = function(grunt) {
     var options = this.options({
       manifest: undefined,
       package: undefined,
-      as: undefined,
       bare: false
     });
 
@@ -50,7 +49,6 @@ module.exports = function(grunt) {
 
     titaniumifier.packer.build({
       entry: entry,
-      as: options.as,
       noDependencies: options.bare,
       manifest: options.manifest,
       package: options.package

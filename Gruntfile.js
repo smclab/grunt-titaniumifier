@@ -1,5 +1,6 @@
 'use strict';
 
+var chalk = require('chalk');
 var path = require('path');
 
 module.exports = function(grunt) {
@@ -44,19 +45,12 @@ module.exports = function(grunt) {
         options: {
           bare: true
         }
-      },
-      "renamed": {
-        files: { './test/build': 'test/fake-module' },
-        options: {
-          as: "renamed-module"
-        }
       }
     },
 
     unzip: {
       "module": {
         src: [
-          'test/build/fake-module-commonjs-1.2.3.zip',
           'test/build/renamed-module-commonjs-1.2.3.zip'
         ],
         dest: 'test/fake-app'
@@ -68,6 +62,8 @@ module.exports = function(grunt) {
         command: 'build',
         logLevel: (grunt.option('log-level') || 'info'),
         projectDir: './test/fake-app',
+        success: '[TESTS ALL OK]',
+        failure: '[TESTS WITH FAILURES]'
       },
       "ios": {
         options: {
@@ -96,7 +92,27 @@ module.exports = function(grunt) {
     grunt.file.mkdir('./test/build');
   });
 
-  grunt.registerTask('test:build', [ 'clean:test', 'mkdir:build', 'titaniumifier' ]);
+  grunt.registerTask('check:build', function () {
+    var failures = [
+      'renamed-module-commonjs-1.2.3-bare.zip',
+      'renamed-module-commonjs-1.2.3.zip'
+    ].reduce(function (failures, zipfile) {
+      if (grunt.file.isFile(path.resolve('test/build/', zipfile))) {
+        grunt.log.ok("Zip " + chalk.cyan(zipfile) + " correctly generated");
+        return failures;
+      }
+      else {
+        grunt.log.error("Zip " + chalk.cyan(zipfile) + " not generated");
+        return failures + 1;
+      }
+    }, 0);
+
+    if (failures) {
+      grunt.fail.fatal(failures + " zipfile(s) had issues");
+    }
+  });
+
+  grunt.registerTask('test:build', [ 'clean:test', 'mkdir:build', 'titaniumifier', 'check:build' ]);
 
   grunt.registerTask('setup:app', [ 'clean:app', 'test:build', 'unzip:module', 'copy:dependencies' ]);
 

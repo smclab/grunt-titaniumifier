@@ -23,6 +23,15 @@ module.exports = function(grunt) {
       "app": [ './test/fake-app/build', './test/fake-app/modules' ]
     },
 
+    copy: {
+      "dependencies": {
+        files: {
+          './test/fake-app/Resources/should.js': require.resolve('should/should'),
+          './test/fake-app/Resources/ti-mocha.js': require.resolve('ti-mocha/ti-mocha')
+        }
+      }
+    },
+
     titaniumifier: {
       "module": {
         files: { './test/build': 'test/fake-module' },
@@ -79,6 +88,7 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-titanium');
   grunt.loadNpmTasks('grunt-zip');
@@ -89,7 +99,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test:build', [ 'clean:test', 'mkdir:build', 'titaniumifier' ]);
 
-  grunt.registerTask('setup:app', [ 'clean:app', 'test:build', 'unzip:module' ]);
+  grunt.registerTask('setup:app', [ 'clean:app', 'test:build', 'unzip:module', 'copy:dependencies' ]);
 
   grunt.registerTask('test:ios', [ 'setup:app', 'titanium:ios' ]);
   grunt.registerTask('test:droid', [ 'setup:app', 'titanium:droid' ]);

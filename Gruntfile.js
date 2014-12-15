@@ -88,10 +88,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-titanium');
   grunt.loadNpmTasks('grunt-zip');
 
-  grunt.registerTask('mkdir:build', function () {
-    grunt.file.mkdir('./test/build');
-  });
-
   grunt.registerTask('check:build', function () {
     var failures = [
       'renamed-module-commonjs-1.2.3-bare.zip',
@@ -112,7 +108,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('test:build', [ 'clean:test', 'mkdir:build', 'titaniumifier', 'check:build' ]);
+  grunt.registerTask('test:build', [ 'clean:test', 'titaniumifier', 'check:build' ]);
 
   grunt.registerTask('setup:app', [ 'clean:app', 'test:build', 'unzip:module', 'copy:dependencies' ]);
 

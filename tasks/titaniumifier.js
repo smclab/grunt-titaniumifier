@@ -1,5 +1,6 @@
 'use strict';
 
+var fs = require('fs');
 var chalk = require('chalk');
 var path = require('path');
 var titaniumifier = require('titaniumifier');
@@ -35,6 +36,10 @@ module.exports = function(grunt) {
 
     var entry = file.src[0];
     var dest = file.dest;
+    
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest);
+    }
 
     if (!entry) {
       grunt.fail.fatal("Could not find the desired module to build!");

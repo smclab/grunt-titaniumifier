@@ -1,6 +1,5 @@
 'use strict';
 
-var fs = require('fs');
 var chalk = require('chalk');
 var path = require('path');
 var titaniumifier = require('titaniumifier');
@@ -36,9 +35,14 @@ module.exports = function(grunt) {
 
     var entry = file.src[0];
     var dest = file.dest;
-    
-    if (!fs.existsSync(dest)) {
-      fs.mkdirSync(dest);
+
+    if (!grunt.file.isDir(dest)) {
+      if (grunt.file.exists(dest)) {
+        grunt.fail.fatal("Destination must be a directory!");
+      }
+      else {
+        grunt.file.mkdir(dest);
+      }
     }
 
     if (!entry) {

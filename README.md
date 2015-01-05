@@ -1,7 +1,13 @@
-grunt-titaniumifier [![Build Status](https://travis-ci.org/smclab/grunt-titaniumifier.png)](https://travis-ci.org/smclab/grunt-titaniumifier)
+grunt-titaniumifier
 ===================
 
-Get a Titanium CommonJS Module out of your Node.js package using Grunt!
+[![Build Status](https://img.shields.io/travis/smclab/grunt-titaniumifier.svg?style=flat-square)](https://travis-ci.org/smclab/grunt-titaniumifier)
+[![npm](https://img.shields.io/npm/v/grunt-titaniumifier.svg?style=flat-square)](https://www.npmjs.com/package/grunt-titaniumifier)
+[![Gitter](https://img.shields.io/badge/GITTER-Join%20chat%20%E2%86%92-1DCE73.svg?style=flat-square)](https://gitter.im/smclab/titaniumifier?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+Get a Titanium CommonJS Module out of your Node.js package with [Titaniumifier](https://github.com/smclab/titaniumifier) using Grunt!
+
+Read the [documentation of `titaniumifier`][wiki] to understand what you can do with it.
 
 
 Getting Started
@@ -31,13 +37,18 @@ grunt.initConfig({
   titaniumifier: {
     "module": {
       options: {
-        // You can create a CommonJS module **without** the dependencies bundled
+        // You can create a CommonJS module **without** the
+        // dependencies bundled
         bare: false
       }
     }
   },
 });
 ```
+
+Most of the configuration must happen on the `package.json` file, please see the [documentation of `titaniumifier`][wiki] to see what you can do.
+
+[wiki]: https://github.com/smclab/titaniumifier/wiki
 
 Credits
 -------

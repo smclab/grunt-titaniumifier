@@ -39,7 +39,13 @@ grunt.initConfig({
       options: {
         // You can create a CommonJS module **without** the
         // dependencies bundled
-        bare: false
+        bare: false,
+        // Specifying bundle:true you will have a bundled JS file alongside the
+        // zipfile, so you can distribute it as a single file
+        bundle: false,
+        // If you don’t even need the zipfile (why??!) you can exclude it from
+        // the building process
+        module: true
       }
     }
   },

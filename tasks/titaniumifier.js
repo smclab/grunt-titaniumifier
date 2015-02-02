@@ -13,7 +13,9 @@ module.exports = function(grunt) {
     var options = this.options({
       manifest: undefined,
       package: undefined,
-      bare: false
+      module: true,
+      bare: false,
+      bundle: false
     });
 
     if (this.files.length > 1) {
@@ -62,11 +64,17 @@ module.exports = function(grunt) {
       manifest: options.manifest,
       package: options.package
     })
-    .then(function (zip) {
-      return zip.writeModule(dest);
+    .tap(function (zip) {
+      if (options.module) return zip.writeModule(dest).then(function () {
+        grunt.log.ok("Module zip written in " + chalk.cyan(dest));
+      });
+    })
+    .tap(function (zip) {
+      if (options.bundle) return zip.writeBundle(dest).then(function () {
+        grunt.log.ok("Module bundle written in " + chalk.cyan(dest));
+      });
     })
     .done(function () {
-      grunt.log.ok("Module zip written in " + chalk.cyan(dest));
       done();
     }, function (err) {
       grunt.fail.fatal(err);

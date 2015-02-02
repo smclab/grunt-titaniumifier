@@ -37,13 +37,17 @@ module.exports = function(grunt) {
       "module": {
         files: { './test/build': 'test/fake-module' },
         options: {
-          bare: false
+          bare: false,
+          bundle: true,
+          module: true
         }
       },
       "bare-module": {
         files: { './test/build': 'test/fake-module' },
         options: {
-          bare: true
+          bare: true,
+          bundle: false,
+          module: true
         }
       }
     },
@@ -91,20 +95,21 @@ module.exports = function(grunt) {
   grunt.registerTask('check:build', function () {
     var failures = [
       'renamed-module-commonjs-1.2.3-bare.zip',
-      'renamed-module-commonjs-1.2.3.zip'
+      'renamed-module-commonjs-1.2.3.zip',
+      'renamed-module.js'
     ].reduce(function (failures, zipfile) {
       if (grunt.file.isFile(path.resolve('test/build/', zipfile))) {
-        grunt.log.ok("Zip " + chalk.cyan(zipfile) + " correctly generated");
+        grunt.log.ok("File " + chalk.cyan(zipfile) + " correctly generated");
         return failures;
       }
       else {
-        grunt.log.error("Zip " + chalk.cyan(zipfile) + " not generated");
+        grunt.log.error("File " + chalk.cyan(zipfile) + " not generated");
         return failures + 1;
       }
     }, 0);
 
     if (failures) {
-      grunt.fail.fatal(failures + " zipfile(s) had issues");
+      grunt.fail.fatal(failures + " file(s) had issues");
     }
   });
 
